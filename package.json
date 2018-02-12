@@ -1,10 +1,13 @@
 {
-  "name": "rws-cards",
+  "name": "rws-cards-api",
   "version": "1.0.0",
   "description": "Simple REST API for the tarot cards of the Rider-Waite-Smith deck.",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon --exec babel-node --presets=env server.js"
+    "start-dev": "nodemon --exec babel-node --presets=env app.js",
+    "start": "node ./dist/app.js",
+    "build": "babel app.js -d dist",
+    "babel-version": "babel --version"
   },
   "author": "ekelen",
   "license": "ISC",
@@ -17,6 +20,7 @@
     "path": "^0.12.7"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
     "nodemon": "^1.14.12"
   },
   "engines": {
