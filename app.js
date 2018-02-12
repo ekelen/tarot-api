@@ -7,15 +7,18 @@ import _ from 'lodash'
 var app = express();
 var router = express.Router()
 
-// TODO python: images, format meanings, assign id
+// TODO python: images, format meanings, assign id, nicer homepage
 
 app.use(bodyParser.json());
 app.use('/data', express.static(path.join(__dirname, 'data')))
 
 app.get('/', (req, res) => {
-  console.log('DIRNAME: ', __dirname)
-  console.log('ROOT: ', __dirname + '/../')
   return res.sendFile('data/index.html', { root: __dirname + '/../' })
+})
+
+app.get('/documentation.yaml', (req, res) => {
+  console.log(process.env.NODE_ENV);
+  return res.sendFile('data/RWS-card-api.yaml', { root: __dirname + '/../' })
 })
 
 app.use('/api/v1', router)
