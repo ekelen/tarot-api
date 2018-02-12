@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var fs = require('fs')
+var path = require('path')
 import _ from 'lodash'
 
 var app = express();
@@ -8,19 +9,31 @@ var router = express.Router()
 
 // TODO python: images, format meanings, assign id
 
-const rawData = JSON.parse(fs.readFileSync('./card_data_v1.json', 'utf8'))
-const { cards } = rawData
 app.use(bodyParser.json());
+app.use('/data', express.static(path.join(__dirname, 'data')))
+
+app.get('/', (req, res) => {
+  return res.send('Welcome to the RWS card data API...')
+})
+
+app.use('/api/v1', router)
+
+router.use((req, res, next) => {
+  res.locals.rawData = JSON.parse(fs.readFileSync('data/card_data_v1.json', 'utf8'))
+  return next();
+})
 
 router.get('/', (req, res) => {
-  res.json(rawData)
+  res.json(res.locals.rawData)
 })
 
 router.get('/cards', (req, res) => {
+  const { cards } = res.locals.rawData
   return res.json({count: cards.length, cards}).status(200)
 })
 
 router.get('/cards/search', (req, res) => {
+  const { cards } = res.locals.rawData
   if (!req.query)
     return res.redirect('/cards')
   let filteredCards = _.cloneDeep(cards)
@@ -39,12 +52,14 @@ router.get('/cards/search', (req, res) => {
 })
 
 router.get('/cards/random', function(req, res) {
+  const { cards } = res.locals.rawData
   const id = Math.floor(Math.random() * 78)
   const card = cards[id]
   return res.json({count: 1, card})
 })
 
 router.get('/cards/:id', (req, res, next) => {
+  const { cards } = res.locals.rawData
   const card = cards.find(c => c.name_short === req.params.id)
   if (_.isUndefined(card))
     return next();
@@ -52,6 +67,7 @@ router.get('/cards/:id', (req, res, next) => {
 })
 
 router.get('/cards/suits/:suit', (req, res, next) => {
+  const { cards } = res.locals.rawData
   const cardsOfSuit = cards.filter(c => c.suit === req.params.suit)
   if (!cardsOfSuit.length)
     return next();
@@ -59,6 +75,7 @@ router.get('/cards/suits/:suit', (req, res, next) => {
 })
 
 router.get('/cards/courts/:court', (req, res, next) => {
+  const { cards } = res.locals.rawData
   const { court } = req.params
   const len = court.length
   const courtSg = court.substr(len - 1) === 's' ? court.substr(0, len - 1) : court
@@ -80,7 +97,7 @@ router.use(function(err, req, res, next) {
   res.json({error: {status: err.status, message: err.message}});
 });
 
-app.use('/api/v1', router)
+
 
 var server = app.listen(process.env.PORT || 8080, function () {
   var port = server.address().port;

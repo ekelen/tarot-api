@@ -9,6 +9,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var express = require('express');
 var bodyParser = require('body-parser');
 var fs = require('fs');
+var path = require('path');
 
 
 var app = express();
@@ -16,20 +17,33 @@ var router = express.Router();
 
 // TODO python: images, format meanings, assign id
 
-var rawData = JSON.parse(fs.readFileSync('./card_data_v1.json', 'utf8'));
-var cards = rawData.cards;
-
 app.use(bodyParser.json());
+app.use('/data', express.static(path.join(__dirname, 'data')));
+
+app.get('/', function (req, res) {
+  return res.send('Welcome to the RWS card data API...');
+});
+
+app.use('/api/v1', router);
+
+router.use(function (req, res, next) {
+  res.locals.rawData = JSON.parse(fs.readFileSync('data/card_data_v1.json', 'utf8'));
+  return next();
+});
 
 router.get('/', function (req, res) {
-  res.json(rawData);
+  res.json(res.locals.rawData);
 });
 
 router.get('/cards', function (req, res) {
+  var cards = res.locals.rawData.cards;
+
   return res.json({ count: cards.length, cards: cards }).status(200);
 });
 
 router.get('/cards/search', function (req, res) {
+  var cards = res.locals.rawData.cards;
+
   if (!req.query) return res.redirect('/cards');
   var filteredCards = _lodash2.default.cloneDeep(cards);
 
@@ -58,12 +72,16 @@ router.get('/cards/search', function (req, res) {
 });
 
 router.get('/cards/random', function (req, res) {
+  var cards = res.locals.rawData.cards;
+
   var id = Math.floor(Math.random() * 78);
   var card = cards[id];
   return res.json({ count: 1, card: card });
 });
 
 router.get('/cards/:id', function (req, res, next) {
+  var cards = res.locals.rawData.cards;
+
   var card = cards.find(function (c) {
     return c.name_short === req.params.id;
   });
@@ -72,6 +90,8 @@ router.get('/cards/:id', function (req, res, next) {
 });
 
 router.get('/cards/suits/:suit', function (req, res, next) {
+  var cards = res.locals.rawData.cards;
+
   var cardsOfSuit = cards.filter(function (c) {
     return c.suit === req.params.suit;
   });
@@ -80,6 +100,7 @@ router.get('/cards/suits/:suit', function (req, res, next) {
 });
 
 router.get('/cards/courts/:court', function (req, res, next) {
+  var cards = res.locals.rawData.cards;
   var court = req.params.court;
 
   var len = court.length;
@@ -102,8 +123,6 @@ router.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.json({ error: { status: err.status, message: err.message } });
 });
-
-app.use('/api/v1', router);
 
 var server = app.listen(process.env.PORT || 8080, function () {
   var port = server.address().port;
