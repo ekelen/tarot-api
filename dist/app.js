@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 app.use('/data', express.static(path.join(__dirname, 'data')));
 
 app.get('/', function (req, res) {
-  return res.sendFile('/data/index.html');
+  return res.sendFile('/data/index.html', { root: __dirname });
 });
 
 app.use('/api/v1', router);
