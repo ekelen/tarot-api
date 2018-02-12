@@ -87,7 +87,6 @@ def get_minors():
                 suit_long = suit[1]
                 name_short = suit[0] + value[0]
                 name_long = value_long + ' of ' + suit_long
-
                 line = res.text
                 desc = line[:line.find("Divinatory Meanings")]
                 meaning_up = line[line.find("Divinatory Meanings")+len("Divinatory Meanings"):line.find("Reversed")]
