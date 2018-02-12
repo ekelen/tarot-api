@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use('/data', express.static(path.join(__dirname, 'data')))
 
 app.get('/', (req, res) => {
-  return res.sendFile('/data/index.html', { root: __dirname })
+  return res.sendFile(path.resolve(__dirname, '../data', 'index.html'))
 })
 
 app.use('/api/v1', router)
