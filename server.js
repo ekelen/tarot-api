@@ -1,8 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var fs = require('fs')
-var http = require('http');
-
 import _ from 'lodash'
 
 var app = express();
@@ -26,7 +24,6 @@ router.get('/cards/search', (req, res) => {
   if (!req.query)
     return res.redirect('/cards')
   let filteredCards = _.cloneDeep(cards)
-
   for (let k in req.query) {
     if (k !== 'q') {
       if (k === 'meaning') {

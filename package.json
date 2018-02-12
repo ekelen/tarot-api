@@ -1,10 +1,9 @@
 {
-  "name": "arcana-x",
+  "name": "rws-cards",
   "version": "1.0.0",
   "description": "Simple REST API for the tarot cards of the Rider-Waite-Smith deck.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --exec babel-node --presets=env server.js"
   },
   "author": "ekelen",
@@ -15,9 +14,7 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "fs": "0.0.1-security",
-    "http": "0.0.0",
-    "path": "^0.12.7",
-    "request": "^2.83.0"
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "nodemon": "^1.14.12"

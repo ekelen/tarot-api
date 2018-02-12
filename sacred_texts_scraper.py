@@ -1,3 +1,7 @@
+# For reference only.
+# A first effort at scraping with Python.
+# Use at your own risk. :)
+
 import json
 import re
 import requests
