@@ -22,7 +22,8 @@ app.use('/data', express.static(path.join(__dirname, 'data')));
 
 app.get('/', function (req, res) {
   console.log('DIRNAME: ', __dirname);
-  return res.sendFile('data/index.html', { root: __dirname });
+  console.log('ROOT: ', __dirname + '/../');
+  return res.sendFile('data/index.html', { root: __dirname + '/../' });
 });
 
 app.use('/api/v1', router);
