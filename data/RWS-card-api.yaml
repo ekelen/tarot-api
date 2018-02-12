@@ -1,0 +1,32 @@
+---
+openapi: 3.0.0
+info:
+  title: RWS Tarot Card API
+  description: Card names, descriptions, and divinatory meanings according to AE Waite.
+  version: 1.0.0
+paths:
+  /cards:
+    get:
+      description: Get all card data.
+  /cards/search:
+    get:
+      description: Searches all cards (using q for global text search, or by parameter)
+    parameters:
+    - name: q
+      in: query
+      description: Search all for text (case insensitive)
+      schema:
+        type: string
+    - name: suit
+      in: query
+      description: Returns only cards of specified suit.
+      schema:
+        type: string
+    - name: value
+      in: query
+      description: Returns only cards of specified value.
+    - name: type
+      in: query
+      description: Returns only cards of specified type.
+      schema:
+        type: string

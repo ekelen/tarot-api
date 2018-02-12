@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use('/data', express.static(path.join(__dirname, 'data')))
 
 app.get('/', (req, res) => {
-  return res.send('Welcome to the RWS card data API...')
+  return res.sendFile('data/index.html')
 })
 
 app.use('/api/v1', router)
