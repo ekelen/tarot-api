@@ -36,7 +36,7 @@ router.get('/', (req, res) => {
 
 router.get('/cards', (req, res) => {
   const { cards } = res.locals.rawData
-  return res.json({count: cards.length, cards}).status(200)
+  return res.json({nhits: cards.length, cards}).status(200)
 })
 
 router.get('/cards/search', (req, res) => {
@@ -55,14 +55,23 @@ router.get('/cards/search', (req, res) => {
       filteredCards = filteredCards.filter(c => Object.values(c).join().toLowerCase().includes(req.query[k].toLowerCase()))
     }
   }
-  return res.json({count: filteredCards.length, cards: filteredCards}).status(200)
+  return res.json({nhits: filteredCards.length, cards: filteredCards}).status(200)
 })
 
 router.get('/cards/random', function(req, res) {
   const { cards } = res.locals.rawData
-  const id = Math.floor(Math.random() * 78)
-  const card = cards[id]
-  return res.json({count: 1, card})
+  let n = 1
+  if (req.query.n && _.inRange(req.query.n, 1, 79)) {
+    n = req.query.n
+  }
+  let cardPool = _.cloneDeep(cards)
+  let returnCards = []
+  for (let i = 0; i < n; i++) {
+    let id = Math.floor(Math.random() * (78 - i))
+    let card = cardPool[id]
+    returnCards = _.concat(returnCards, _.remove(cardPool, (c) => (c.name_short === card.name_short)))
+  }
+  return res.json({nhits: returnCards.length, cards: returnCards})
 })
 
 router.get('/cards/:id', (req, res, next) => {
@@ -70,7 +79,7 @@ router.get('/cards/:id', (req, res, next) => {
   const card = cards.find(c => c.name_short === req.params.id)
   if (_.isUndefined(card))
     return next();
-  return res.json({count: 1, card}).status(200)
+  return res.json({nhits: 1, card}).status(200)
 })
 
 router.get('/cards/suits/:suit', (req, res, next) => {
@@ -78,7 +87,7 @@ router.get('/cards/suits/:suit', (req, res, next) => {
   const cardsOfSuit = cards.filter(c => c.suit === req.params.suit)
   if (!cardsOfSuit.length)
     return next();
-  return res.json({count: cardsOfSuit.length, cards: cardsOfSuit}).status(200)
+  return res.json({nhits: cardsOfSuit.length, cards: cardsOfSuit}).status(200)
 })
 
 router.get('/cards/courts/:court', (req, res, next) => {
@@ -89,7 +98,7 @@ router.get('/cards/courts/:court', (req, res, next) => {
   const cardsOfCourt = cards.filter(c => c.value === courtSg)
   if (!cardsOfCourt.length)
     return next();
-  return res.json({count: cardsOfCourt.length, cards: cardsOfCourt}).status(200)
+  return res.json({nhits: cardsOfCourt.length, cards: cardsOfCourt}).status(200)
 })
 
 router.use(function(req, res, next) {

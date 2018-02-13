@@ -45,7 +45,7 @@ router.get('/', function (req, res) {
 router.get('/cards', function (req, res) {
   var cards = res.locals.rawData.cards;
 
-  return res.json({ count: cards.length, cards: cards }).status(200);
+  return res.json({ nhits: cards.length, cards: cards }).status(200);
 });
 
 router.get('/cards/search', function (req, res) {
@@ -75,15 +75,31 @@ router.get('/cards/search', function (req, res) {
   for (var k in req.query) {
     _loop(k);
   }
-  return res.json({ count: filteredCards.length, cards: filteredCards }).status(200);
+  return res.json({ nhits: filteredCards.length, cards: filteredCards }).status(200);
 });
 
 router.get('/cards/random', function (req, res) {
   var cards = res.locals.rawData.cards;
 
-  var id = Math.floor(Math.random() * 78);
-  var card = cards[id];
-  return res.json({ count: 1, card: card });
+  var n = 1;
+  if (req.query.n && _lodash2.default.inRange(req.query.n, 1, 79)) {
+    n = req.query.n;
+  }
+  var cardPool = _lodash2.default.cloneDeep(cards);
+  var returnCards = [];
+
+  var _loop2 = function _loop2(i) {
+    var id = Math.floor(Math.random() * (78 - i));
+    var card = cardPool[id];
+    returnCards = _lodash2.default.concat(returnCards, _lodash2.default.remove(cardPool, function (c) {
+      return c.name_short === card.name_short;
+    }));
+  };
+
+  for (var i = 0; i < n; i++) {
+    _loop2(i);
+  }
+  return res.json({ nhits: returnCards.length, cards: returnCards });
 });
 
 router.get('/cards/:id', function (req, res, next) {
@@ -93,7 +109,7 @@ router.get('/cards/:id', function (req, res, next) {
     return c.name_short === req.params.id;
   });
   if (_lodash2.default.isUndefined(card)) return next();
-  return res.json({ count: 1, card: card }).status(200);
+  return res.json({ nhits: 1, card: card }).status(200);
 });
 
 router.get('/cards/suits/:suit', function (req, res, next) {
@@ -103,7 +119,7 @@ router.get('/cards/suits/:suit', function (req, res, next) {
     return c.suit === req.params.suit;
   });
   if (!cardsOfSuit.length) return next();
-  return res.json({ count: cardsOfSuit.length, cards: cardsOfSuit }).status(200);
+  return res.json({ nhits: cardsOfSuit.length, cards: cardsOfSuit }).status(200);
 });
 
 router.get('/cards/courts/:court', function (req, res, next) {
@@ -116,7 +132,7 @@ router.get('/cards/courts/:court', function (req, res, next) {
     return c.value === courtSg;
   });
   if (!cardsOfCourt.length) return next();
-  return res.json({ count: cardsOfCourt.length, cards: cardsOfCourt }).status(200);
+  return res.json({ nhits: cardsOfCourt.length, cards: cardsOfCourt }).status(200);
 });
 
 router.use(function (req, res, next) {
