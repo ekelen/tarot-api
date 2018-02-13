@@ -14,7 +14,9 @@ Provides information parsed from AE Waite's The Pictorial Key to the Tarot in Op
 Examples:
 
 Get all cards with word "peace" in meaning (reversed or upright):
+
 https://rws-cards-api.herokuapp.com/api/v1/cards/search?meaning=peace
 
 Get 10 random cards:
+
 https://rws-cards-api.herokuapp.com/api/v1/cards/random?n=10
