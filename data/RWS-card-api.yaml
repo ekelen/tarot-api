@@ -30,3 +30,13 @@ paths:
       description: Returns only cards of specified type.
       schema:
         type: string
+  /cards/random:
+    get:
+      description: Returns one random card (or n random card if specified in parameters).
+    parameters:
+    - name: n
+      in: query
+      description: Optional. Accepts 1-78. If specified, returns n number of unique
+        random cards.
+      schema:
+        type: integer
