@@ -26,7 +26,7 @@ app.get('/documentation.yaml', (req, res) => {
 app.use('/api/v1', router)
 
 router.use((req, res, next) => {
-  res.locals.rawData = JSON.parse(fs.readFileSync('data/card_data_v1.json', 'utf8'))
+  res.locals.rawData = JSON.parse(fs.readFileSync('data/card_data_v2.json', 'utf8'))
   return next();
 })
 
