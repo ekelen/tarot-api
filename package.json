@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start-dev": "nodemon --exec babel-node --presets=env app.js",
+    "scrape": "babel-node --presets=env js_scraper.js",
     "start": "node dist/app.js",
     "build": "babel app.js -d dist",
     "babel-version": "babel --version"
@@ -17,10 +18,15 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "fs": "0.0.1-security",
+    "moment": "^2.20.1",
     "path": "^0.12.7"
   },
   "devDependencies": {
+    "async": "^2.6.0",
+    "axios": "^0.17.1",
     "babel-core": "^6.26.0",
+    "cheerio": "^1.0.0-rc.2",
+    "jsonfile": "^4.0.0",
     "nodemon": "^1.14.12"
   },
   "engines": {

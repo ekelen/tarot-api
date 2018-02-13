@@ -1,4 +1,4 @@
-# For reference only.
+# For reference only. Not using anymore.
 # A first effort at scraping with Python.
 # Use at your own risk. :)
 
@@ -11,6 +11,8 @@ base_url = 'http://www.sacred-texts.com/tarot/pkt/pkt'
 majors_url = 'http://www.sacred-texts.com/tarot/pkt/pkt0303.htm'
 
 cards = []
+minorText = []
+majorText = []
 
 class Card:
     def __init__(self, value, value_int, name, name_short, meaning_up, meaning_rev):
@@ -72,6 +74,8 @@ def get_majors():
             meaning_up = line[len(m[0])+3:line.find("Reversed")]
             meaning_rev = line[line.find("Reversed")+len("Reversed"):]
             c = Major(value, value_int, name, name_short, meaning_up, meaning_rev)
+            entry = {'name_short': name_short, 'name': name, 'text': line, 'value': value}
+            majorText.append(entry)
             cards.append(c.to_JSON())
             print('Added major card', c.name)
 
@@ -92,6 +96,8 @@ def get_minors():
                 name_short = suit[0] + value[0]
                 name_long = value_long + ' of ' + suit_long
                 line = res.text
+                entry = {'name_short': name_short, 'text': line, 'value_long': value_long, 'value_int': value_int, 'name': name_long}
+                minorText.append(entry)
                 desc = line[:line.find("Divinatory Meanings")]
                 meaning_up = line[line.find("Divinatory Meanings")+len("Divinatory Meanings"):line.find("Reversed")]
                 meaning_rev = line[line.find("Reversed")+len("Reversed"):]
@@ -102,7 +108,13 @@ def get_minors():
 get_majors()
 get_minors()
 
-# Writing
-with open('card_data_v1.json', mode='w', encoding='utf-8') as f:
+
+with open('card_data_tmp.json', mode='w', encoding='utf-8') as f:
     entry = {'count': len(cards), 'cards': cards}
     json.dump(entry, f)
+
+with open('min_text.json', mode='w', encoding='utf-8') as f:
+    json.dump(minorText, f)
+
+with open('maj_text.json', mode='w', encoding='utf-8') as f:
+    json.dump(majorText, f)
