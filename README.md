@@ -15,7 +15,7 @@ Examples:
 
 Get all cards with word "peace" in meaning (reversed or upright):
 
-https://rws-cards-api.herokuapp.com/api/v1/cards/search?meaning=peace
+https://rws-cards-api.herokuapp.com/api/v1/cards/search?meaning=peace (free dyno == super slow, sorry)
 
 Get 10 random cards:
 
