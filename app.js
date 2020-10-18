@@ -7,7 +7,7 @@ import _ from 'lodash'
 var app = express();
 var router = express.Router()
 
-const root = process.env.NODE_ENV === "production" ? __dirname + '/../' : __dirname
+const root = process.env.NODE_ENV === "production" ? path.join(__dirname, '..') : __dirname
 
 // TODO python: images, format meanings, assign id, nicer homepage
 
@@ -19,7 +19,6 @@ app.get('/', (req, res) => {
 })
 
 app.get('/documentation.yaml', (req, res) => {
-  console.log(process.env.NODE_ENV);
   return res.sendFile('data/RWS-card-api.yaml', { root })
 })
 
@@ -29,6 +28,14 @@ router.use((req, res, next) => {
   res.locals.rawData = JSON.parse(fs.readFileSync('data/card_data_v2.json', 'utf8'))
   return next();
 })
+
+router.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", '*');
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+  return next();
+});
 
 router.get('/', (req, res) => {
   res.json(res.locals.rawData)
