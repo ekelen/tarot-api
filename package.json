@@ -4,17 +4,19 @@
   "description": "Simple REST API for the tarot cards of the Rider-Waite-Smith deck.",
   "main": "app.js",
   "scripts": {
-    "start-dev": "nodemon --exec babel-node --presets=env app.js",
-    "validate": "babel-node --presets=env data_validate.js",
+    "start-dev": "nodemon --exec @babel/node --presets @babel/preset-env app.js",
+    "validate": "@babel/node data_validate.js",
     "start": "node dist/app.js",
-    "build": "babel app.js -d dist",
-    "babel-version": "babel --version"
+    "build": "./node_modules/@babel/cli/bin/babel.js app.js -d dist",
+    "babel-version": "npx @babel/cli --version"
   },
   "author": "ekelen",
   "license": "ISC",
   "dependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
+    "@babel/node": "^7.0.0",
+    "@babel/preset-env": "^7.12.1",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "fs": "0.0.1-security",
@@ -23,14 +25,13 @@
   },
   "devDependencies": {
     "async": "^2.6.0",
-    "axios": "^0.17.1",
-    "babel-core": "^6.26.0",
+    "axios": "^0.20.0",
     "cheerio": "^1.0.0-rc.2",
     "jsonfile": "^4.0.0",
-    "nodemon": "^1.14.12"
+    "nodemon": "^1.19.4"
   },
   "engines": {
-    "node": "8.9.4",
-    "npm": "5.6.0"
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
   }
 }
