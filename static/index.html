@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon" />
+    <title>Tarot API</title>
+  </head>
+  <body>
+    <header><h1>Rider-Waite-Smith Cards API</h1></header>
+    <p>
+      Using data from
+      <a href="http://www.sacred-texts.com/tarot/pkt/index.htm"
+        >The Pictorial Key to the Tarot</a
+      >
+      by Arthur Edward Waite.
+    </p>
+    <a href="https://rws-cards-api.herokuapp.com/documentation.yaml"
+      >View YAML documentation.</a
+    >
+
+    <p>Examples:</p>
+    <p>
+      Get all cards:
+      <a href="https://rws-cards-api.herokuapp.com/api/v1/cards"
+        >https://rws-cards-api.herokuapp.com/api/v1/cards</a
+      >
+    </p>
+    <p>
+      Search all cards with "difficult" in reversed or upright meanings:
+      <a
+        href="https://rws-cards-api.herokuapp.com/api/v1/cards/search?meaning=difficult"
+        >https://rws-cards-api.herokuapp.com/api/v1/cards/search?meaning=difficult</a
+      >
+    </p>
+  </body>
+</html>
+
+<style>
+  body {
+    font-family: Futura, Calibri, "Trebuchet MS", sans-serif;
+  }
+  h1 {
+    font-family: Calibri, Futura, serif;
+    font-weight: 300;
+  }
+</style>

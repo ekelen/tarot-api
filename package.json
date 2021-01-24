@@ -1,14 +1,15 @@
 {
   "name": "rws-cards-api",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Simple REST API for the tarot cards of the Rider-Waite-Smith deck.",
   "main": "app.js",
   "scripts": {
-    "start-dev": "nodemon --exec @babel/node --presets @babel/preset-env app.js",
-    "validate": "@babel/node data_validate.js",
-    "start": "node dist/app.js",
-    "build": "./node_modules/@babel/cli/bin/babel.js app.js -d dist",
-    "babel-version": "npx @babel/cli --version"
+    "start-dev": "nodemon exec babel-node app.js",
+    "dev": "npm run start-dev",
+    "validate": "node ./scripts/data_validate.js",
+    "start": "NODE_ENV=production node dist/app.js",
+    "build": "rm -rf ./dist && NODE_ENV=production ./node_modules/@babel/cli/bin/babel.js app.js -d dist",
+    "babel-version": "babel --version"
   },
   "author": "ekelen",
   "license": "ISC",
@@ -20,14 +21,12 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "fs": "0.0.1-security",
-    "moment": "^2.20.1",
+    "lodash.clonedeep": "^4.5.0",
+    "lodash.range": "^3.2.0",
+    "lodash.remove": "^4.7.0",
     "path": "^0.12.7"
   },
   "devDependencies": {
-    "async": "^2.6.0",
-    "axios": "^0.20.0",
-    "cheerio": "^1.0.0-rc.2",
-    "jsonfile": "^4.0.0",
     "nodemon": "^1.19.4"
   },
   "engines": {
