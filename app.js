@@ -24,7 +24,7 @@ app.get("/documentation.yaml", (_req, res) => {
   return res.sendFile("static/RWS-card-api.yaml", { root });
 });
 
-app.use("/api/v1", router);
+app.use("/api/v1/", router);
 
 router.use((_req, res, next) => {
   res.locals.rawData = JSON.parse(
@@ -45,7 +45,7 @@ router.use(function (_req, res, next) {
 });
 
 router.get("/", (_req, res) => {
-  res.json(res.locals.rawData);
+  return res.redirect("/api/v1/cards");
 });
 
 router.get("/cards", (_req, res) => {
@@ -55,7 +55,9 @@ router.get("/cards", (_req, res) => {
 
 router.get("/cards/search", (req, res) => {
   const { cards } = res.locals.rawData;
-  if (!req.query) return res.redirect("/cards");
+  console.log(`req.query:`, req.query);
+  if (!req.query || Object.keys(req.query).length === 0)
+    return res.redirect("/api/v1/cards");
   let filteredCards = [];
   for (let k in req.query) {
     if (k !== "q") {
