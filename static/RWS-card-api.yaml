@@ -1,43 +1,171 @@
 ---
 openapi: 3.0.0
 info:
-  title: RWS Tarot Card API
-  description: Card names, descriptions, and divinatory meanings according to AE Waite.
+  title: Tarot Card Meanings REST API
+  description: Card names, descriptions, and divinatory meanings according to AE Waite's Pictorial Key to the Tarot (1910), the companion to the Rider-Waite-Smith (RWS) deck upon which most newer decks are based.
   version: 1.0.0
+servers:
+- url: https://rws-cards-api.herokuapp.com/api/v1
 paths:
   /cards:
     get:
-      description: Get all card data.
+      responses:
+        "200":
+          description: Get all card data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardList'
+  /cards/suits/{suit}:
+    get:
+      parameters:
+      - name: suit
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          enum:
+          - wands
+          - cups
+          - swords
+          - pentacles
+      responses:
+        "200":
+          description: Get cards of specified suit
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardList'
+  /cards/courts/{rank}:
+    get:
+      parameters:
+      - name: rank
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          enum:
+          - queen
+          - queens
+          - king
+          - kings
+          - knight
+          - knights
+          - page
+          - pages
+      responses:
+        "200":
+          description: Get cards of specified suit
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardList'
   /cards/search:
     get:
-      description: Searches all cards (using q for global text search, or by parameter)
-    parameters:
+      parameters:
       - name: q
         in: query
         description: Search all for text (case insensitive)
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
       - name: suit
         in: query
-        description: Returns only cards of specified suit.
+        description: Returns only cards of specified suit. e.g. search?suit=wands
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
+          enum:
+          - wands
+          - swords
+          - cups
+          - pentacles
       - name: value
         in: query
-        description: Returns only cards of specified value.
+        description: Returns only cards of specified value, e.g. search?value=4
+        required: false
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/value'
       - name: type
         in: query
         description: Returns only cards of specified type.
+        required: false
+        style: form
+        explode: true
         schema:
           type: string
+          enum:
+          - major
+          - minor
+      responses:
+        "200":
+          description: Searches all cards (using q for global text search, or by parameter)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardList'
   /cards/random:
     get:
-      description: Returns one random card (or n random card if specified in parameters).
-    parameters:
-      - name: n
+      parameters:
+      - name: "n"
         in: query
-        description:
-          Optional. Accepts 1-78. If specified, returns n number of unique
-          random cards.
+        description: If specified and between 1 and 78, returns n number of unique random cards. Else, returns all cards in random order.
+        required: false
+        style: form
+        explode: true
         schema:
           type: integer
+      responses:
+        "200":
+          description: Returns one random card (or n random card if specified in parameters).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardList'
+components:
+  schemas:
+    Card:
+      type: object
+      properties:
+        name_short:
+          type: string
+        name:
+          type: string
+        value:
+          type: string
+        value_int:
+          type: integer
+        type:
+          type: string
+          enum:
+          - major
+          - minor
+        meaning_up:
+          type: string
+        meaning_rev:
+          type: string
+        desc:
+          type: string
+    CardList:
+      type: object
+      properties:
+        nhits:
+          type: integer
+        cards:
+          type: array
+          items:
+            $ref: '#/components/schemas/Card'
+    value:
+      anyOf:
+      - type: integer
+      - type: string

@@ -7,41 +7,96 @@
     <title>Tarot API</title>
   </head>
   <body>
-    <header><h1>Rider-Waite-Smith Cards API</h1></header>
-    <p>
-      Using data from
-      <a href="http://www.sacred-texts.com/tarot/pkt/index.htm"
-        >The Pictorial Key to the Tarot</a
-      >
-      by Arthur Edward Waite.
-    </p>
-    <a href="https://rws-cards-api.herokuapp.com/documentation.yaml"
-      >View YAML documentation.</a
-    >
+    <header><h1>Tarot API</h1></header>
+    <main>
+      <h3>
+        Card names, descriptions, and divinatory meanings according to AE
+        Waite's Pictorial Key to the Tarot (1910), the companion to the
+        Rider-Waite-Smith (RWS) deck upon which most newer decks are based.
+      </h3>
+      <ul>
+        <li>
+          <a href="https://github.com/ekelen/tarot-api">See the README</a> at
+          the repository root
+        </li>
+        <li>
+          See full documentation and try it out
+          <a
+            href="https://app.swaggerhub.com/apis/ekswagger/rws-tarot_card_api/1.0.0"
+            >on SwaggerHub!</a
+          >
+        </li>
+      </ul>
+    </main>
+    <footer>
+      <div>
+        <a
+          rel="license"
+          href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+          ><img
+            alt="Creative Commons License"
+            style="border-width: 0"
+            src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png"
+        /></a>
+      </div>
+      <div>
+        <small
+          >&nbsp;This work is licensed under a
+          <a
+            rel="license"
+            href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+            >Creative Commons Attribution-NonCommercial-ShareAlike 4.0
+            International License</a
+          ></small
+        >
+      </div>
 
-    <p>Examples:</p>
-    <p>
-      Get all cards:
-      <a href="https://rws-cards-api.herokuapp.com/api/v1/cards"
-        >https://rws-cards-api.herokuapp.com/api/v1/cards</a
-      >
-    </p>
-    <p>
-      Search all cards with "difficult" in reversed or upright meanings:
-      <a
-        href="https://rws-cards-api.herokuapp.com/api/v1/cards/search?meaning=difficult"
-        >https://rws-cards-api.herokuapp.com/api/v1/cards/search?meaning=difficult</a
-      >
-    </p>
+      <div id="attr"><small>by ekelen 🖤</small></div>
+    </footer>
   </body>
 </html>
 
 <style>
   body {
-    font-family: Futura, Calibri, "Trebuchet MS", sans-serif;
+    font-family: Calibri, "Trebuchet MS", sans-serif;
+    margin-left: 0;
+    margin-right: 0;
   }
-  h1 {
+  h1,
+  h2,
+  h3 {
     font-family: Calibri, Futura, serif;
     font-weight: 300;
+  }
+  header,
+  main {
+    width: 960px;
+    max-width: 95vw;
+    margin: 2rem auto;
+  }
+  a {
+    text-decoration: none;
+    font-weight: bold;
+  }
+  footer {
+    box-sizing: border-box;
+    background-color: rgb(239, 239, 239);
+    display: flex;
+    position: fixed;
+    align-items: center;
+    bottom: 0;
+    width: 100vw;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 1rem 0.5rem;
+  }
+
+  small {
+    font-size: small;
+  }
+
+  #attr {
+    font-size: small;
+    margin-left: auto;
   }
 </style>
