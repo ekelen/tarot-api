@@ -1,0 +1,339 @@
+{
+	"info": {
+		"_postman_id": "7a751d34-2ed7-4658-8d9a-684788d146d0",
+		"name": "Tarot API",
+		"description": "<img src=\"https://media.allure.com/photos/5a9470f569a541775bd3b8b6/master/pass/tarot-cards-the-world-wheel-of-fortune-the-sun.jpgb\" alt=\"tarot cards image\" width=\"200\"/>\n\n# Introduction\n- [GitHub repo](https://github.com/ekelen/tarot-api)\n> For all your cybermysticism needs. 🔮\n>\n> Provides information parsed from AE Waite's The Pictorial Key to the Tarot, meeting the OpenAPI 3 spec. This was created as a friendly introduction to REST APIs with ExpressJS.\n\n[![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/1215211-7a751d34-2ed7-4658-8d9a-684788d146d0?action=collection%2Ffork&collection-url=entityId%3D1215211-7a751d34-2ed7-4658-8d9a-684788d146d0%26entityType%3Dcollection%26workspaceId%3D55fb4adf-1644-44eb-b9db-825b3db96819)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "cards",
+			"item": [
+				{
+					"name": "/cards",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/cards",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all card data.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/cards",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"cards"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"nhits\": -98691851,\n \"cards\": [\n  {\n   \"name_short\": \"ut nulla magna commodo ea\",\n   \"name\": \"mollit in\",\n   \"value\": \"dolor consequat adipisicing inc\",\n   \"value_int\": -54970101,\n   \"type\": \"minor\",\n   \"meaning_up\": \"labore in\",\n   \"meaning_rev\": \"elit et ad\",\n   \"desc\": \"exercitation eu\"\n  },\n  {\n   \"name_short\": \"Ut\",\n   \"name\": \"amet eu laborum\",\n   \"value\": \"culpa in enim\",\n   \"value_int\": -96480628,\n   \"type\": \"minor\",\n   \"meaning_up\": \"officia sed\",\n   \"meaning_rev\": \"exercitation quis\",\n   \"desc\": \"aliquip voluptate incididunt in\"\n  }\n ]\n}"
+						}
+					]
+				},
+				{
+					"name": "/cards/suits/:suit",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/cards/suits/:suit",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cards",
+								"suits",
+								":suit"
+							],
+							"variable": [
+								{
+									"key": "suit",
+									"value": "swords",
+									"description": "(Required) Available values: [\"wands\", \"cups\", \"swords\", \"pentacles\"]"
+								}
+							]
+						},
+						"description": "Available values: [\"wands\", \"cups\", \"swords\", \"pentacles\"]"
+					},
+					"response": [
+						{
+							"name": "Get cards of specified suit",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/cards/suits/:suit",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"cards",
+										"suits",
+										":suit"
+									],
+									"variable": [
+										{
+											"key": "suit"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"nhits\": 30957907,\n \"cards\": [\n  {\n   \"name_short\": \"quis id in mollit\",\n   \"name\": \"mollit\",\n   \"value\": \"nisi elit consectetur\",\n   \"value_int\": 59499371,\n   \"type\": \"minor\",\n   \"meaning_up\": \"adipisicing qui mol\",\n   \"meaning_rev\": \"enim in consectetur ullamco\",\n   \"desc\": \"dolore amet in\"\n  },\n  {\n   \"name_short\": \"id labori\",\n   \"name\": \"laborum sint\",\n   \"value\": \"mollit sed culpa cillum\",\n   \"value_int\": -43314352,\n   \"type\": \"minor\",\n   \"meaning_up\": \"mollit Ut tempor sed\",\n   \"meaning_rev\": \"dolore sint\",\n   \"desc\": \"ut\"\n  }\n ]\n}"
+						}
+					]
+				},
+				{
+					"name": "/cards/courts/:rank",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/cards/courts/:rank",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cards",
+								"courts",
+								":rank"
+							],
+							"variable": [
+								{
+									"key": "rank",
+									"value": "pages",
+									"description": "(Required) Available values: [\"queen\", \"queens\", \"king\", \"kings\", \"knight\", \"knights\", \"page\", \"pages\"]"
+								}
+							]
+						},
+						"description": "Available values: [\"queen\", \"queens\", \"king\", \"kings\", \"knight\", \"knights\", \"page\", \"pages\"]"
+					},
+					"response": [
+						{
+							"name": "Get cards of specified suit",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/cards/courts/:rank",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"cards",
+										"courts",
+										":rank"
+									],
+									"variable": [
+										{
+											"key": "rank"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"nhits\": 30957907,\n \"cards\": [\n  {\n   \"name_short\": \"quis id in mollit\",\n   \"name\": \"mollit\",\n   \"value\": \"nisi elit consectetur\",\n   \"value_int\": 59499371,\n   \"type\": \"minor\",\n   \"meaning_up\": \"adipisicing qui mol\",\n   \"meaning_rev\": \"enim in consectetur ullamco\",\n   \"desc\": \"dolore amet in\"\n  },\n  {\n   \"name_short\": \"id labori\",\n   \"name\": \"laborum sint\",\n   \"value\": \"mollit sed culpa cillum\",\n   \"value_int\": -43314352,\n   \"type\": \"minor\",\n   \"meaning_up\": \"mollit Ut tempor sed\",\n   \"meaning_rev\": \"dolore sint\",\n   \"desc\": \"ut\"\n  }\n ]\n}"
+						}
+					]
+				},
+				{
+					"name": "/cards/search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/cards/search?q=dangerous&suit=pentacles&value=4&type=minor",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cards",
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "dangerous",
+									"description": "Search all for text (case insensitive)"
+								},
+								{
+									"key": "suit",
+									"value": "pentacles",
+									"description": "Returns only cards of specified suit. e.g. search?suit=wands"
+								},
+								{
+									"key": "value",
+									"value": "4",
+									"description": "Returns only cards of specified value, e.g. search?value=4"
+								},
+								{
+									"key": "type",
+									"value": "minor",
+									"description": "Returns only cards of specified type."
+								}
+							]
+						},
+						"description": "- `suit` - Available values: [\"wands\", \"cups\", \"swords\", \"pentacles\"]\n- `type` - Available values: [\"major\", \"minor\"]"
+					},
+					"response": [
+						{
+							"name": "Searches all cards (using q for global text search, or by parameter)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/cards/search?q=Lorem nostrud&suit=pentacles&value=-69500722&type=minor",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"cards",
+										"search"
+									],
+									"query": [
+										{
+											"key": "q",
+											"value": "Lorem nostrud"
+										},
+										{
+											"key": "suit",
+											"value": "pentacles"
+										},
+										{
+											"key": "value",
+											"value": "-69500722"
+										},
+										{
+											"key": "type",
+											"value": "minor"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"nhits\": 30957907,\n \"cards\": [\n  {\n   \"name_short\": \"quis id in mollit\",\n   \"name\": \"mollit\",\n   \"value\": \"nisi elit consectetur\",\n   \"value_int\": 59499371,\n   \"type\": \"minor\",\n   \"meaning_up\": \"adipisicing qui mol\",\n   \"meaning_rev\": \"enim in consectetur ullamco\",\n   \"desc\": \"dolore amet in\"\n  },\n  {\n   \"name_short\": \"id labori\",\n   \"name\": \"laborum sint\",\n   \"value\": \"mollit sed culpa cillum\",\n   \"value_int\": -43314352,\n   \"type\": \"minor\",\n   \"meaning_up\": \"mollit Ut tempor sed\",\n   \"meaning_rev\": \"dolore sint\",\n   \"desc\": \"ut\"\n  }\n ]\n}"
+						}
+					]
+				},
+				{
+					"name": "/cards/random",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/cards/random?n=60",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cards",
+								"random"
+							],
+							"query": [
+								{
+									"key": "n",
+									"value": "60",
+									"description": "If specified and between 1 and 78, returns n number of unique random cards. Else, returns all cards in random order."
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Returns one random card (or n random card if specified in parameters).",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/cards/random?n=-69500722",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"cards",
+										"random"
+									],
+									"query": [
+										{
+											"key": "n",
+											"value": "-69500722"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"nhits\": 30957907,\n \"cards\": [\n  {\n   \"name_short\": \"quis id in mollit\",\n   \"name\": \"mollit\",\n   \"value\": \"nisi elit consectetur\",\n   \"value_int\": 59499371,\n   \"type\": \"minor\",\n   \"meaning_up\": \"adipisicing qui mol\",\n   \"meaning_rev\": \"enim in consectetur ullamco\",\n   \"desc\": \"dolore amet in\"\n  },\n  {\n   \"name_short\": \"id labori\",\n   \"name\": \"laborum sint\",\n   \"value\": \"mollit sed culpa cillum\",\n   \"value_int\": -43314352,\n   \"type\": \"minor\",\n   \"meaning_up\": \"mollit Ut tempor sed\",\n   \"meaning_rev\": \"dolore sint\",\n   \"desc\": \"ut\"\n  }\n ]\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://rws-cards-api.herokuapp.com/api/v1",
+			"type": "string"
+		}
+	]
+}

@@ -7,8 +7,10 @@ Provides information parsed from AE Waite's The Pictorial Key to the Tarot, meet
 ---
 
 ## API Usage
-
-1. [See full documentation + play with the API on SwaggerHub](https://app.swaggerhub.com/apis/ekswagger/rws-tarot_card_api/1.0.0)
+ 
+1. [See full documentation + play with the API on SwaggerHub](https://app.swaggerhub.com/apis/ekswagger/rws-tarot_card_api/1.0.0), or [fork the Postman collection to your own workspace](https://www.postman.com/joyce-jetson/workspace/joycejetson/documentation/1215211-7a751d34-2ed7-4658-8d9a-684788d146d0)
+ 
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/1215211-7a751d34-2ed7-4658-8d9a-684788d146d0?action=collection%2Ffork&collection-url=entityId%3D1215211-7a751d34-2ed7-4658-8d9a-684788d146d0%26entityType%3Dcollection%26workspaceId%3D55fb4adf-1644-44eb-b9db-825b3db96819)
 
 2. See below for quick start
 
