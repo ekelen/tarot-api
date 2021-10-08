@@ -29,10 +29,7 @@ const validate = (cards = null) => {
       assert(!Number.isNaN(parseInt(c.value_int, 10)), `Bad attr "value_int"`);
       assert(c.value && c.value.length, `Bad attr "value"`);
       assert(c.meaning_up && c.meaning_up.length, `Bad attr "meaning_up"`);
-      assert(
-        (c.meaning_rev && c.meaning_rev.length) || c.name_short === "cu02",
-        `Bad attr "meaning_rev"`
-      );
+      assert(c.meaning_rev && c.meaning_rev.length, `Bad attr "meaning_rev"`);
       assert(
         ["major", "minor"].includes(c.type),
         `Bad attr "type" (must be in ["major", "minor"]`
