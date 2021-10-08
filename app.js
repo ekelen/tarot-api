@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const fs = require("fs");
 const path = require("path");
-const cloneDeep = require("lodash/cloneDeep");
+const cloneDeep = require("lodash.cloneDeep");
 const remove = require("lodash.remove");
 
 const app = express();
