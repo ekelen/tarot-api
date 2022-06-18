@@ -151,6 +151,6 @@ router.use(function (err, _req, res) {
 
 const port = process.env.PORT || 8000;
 
-var server = app.listen(port, function () {
+app.listen(port, function () {
   console.log("RWS API Server now running on port", port);
 });
