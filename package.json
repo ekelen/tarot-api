@@ -7,8 +7,8 @@
     "start-dev": "npx nodemon exec babel-node ./app.js",
     "dev": "npm run start-dev",
     "validate": "node ./scripts/data_validate.js",
-    "start": "NODE_ENV=production node ./dist/app.js",
-    "build": "rm -rf ./dist && NODE_ENV=production ./node_modules/@babel/cli/bin/babel.js app.js -d ./dist"
+    "start": "NODE_ENV=production node dist/app.js",
+    "build": "rm -rf dist && NODE_ENV=production ./node_modules/@babel/cli/bin/babel.js app.js -d dist"
   },
   "author": "ekelen",
   "license": "ISC",
@@ -30,6 +30,6 @@
   },
   "engines": {
     "node": "16.9.0",
-    "npm": ">=6.0.0"
+    "npm": "7.21.1"
   }
 }
