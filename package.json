@@ -4,11 +4,11 @@
   "description": "Simple REST API for the tarot cards of the Rider-Waite-Smith deck.",
   "main": "app.js",
   "scripts": {
-    "start-dev": "npx nodemon exec babel-node app.js",
+    "start-dev": "npx nodemon exec babel-node ./app.js",
     "dev": "npm run start-dev",
     "validate": "node ./scripts/data_validate.js",
-    "start": "NODE_ENV=production node dist/app.js",
-    "build": "rm -rf ./dist && NODE_ENV=production ./node_modules/@babel/cli/bin/babel.js app.js -d dist"
+    "start": "NODE_ENV=production node ./dist/app.js",
+    "build": "rm -rf ./dist && NODE_ENV=production ./node_modules/@babel/cli/bin/babel.js app.js -d ./dist"
   },
   "author": "ekelen",
   "license": "ISC",
@@ -29,7 +29,7 @@
     "nodemon": "^2.0.16"
   },
   "engines": {
-    "node": ">=10.0.0",
+    "node": "16.9.0",
     "npm": ">=6.0.0"
   }
 }
