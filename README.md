@@ -14,13 +14,14 @@ Provides information parsed from AE Waite's The Pictorial Key to the Tarot, meet
 
 ### Quick start
 
-Node:
+JS:
 
 ```javascript
-import axios from "axios"; // or CommonJS require syntax
 
-axios
-  .get("https://rws-cards-api.herokuapp.com/api/v1/cards/random?n=10")
+fetch("https://rws-cards-api.herokuapp.com/api/v1/cards/random?n=10")
+  .then(function (response) {
+    return response.json()
+  })
   .then(function (response) {
     // handle ten random cards
   })
