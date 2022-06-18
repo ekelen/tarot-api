@@ -8,7 +8,7 @@ Provides information parsed from AE Waite's The Pictorial Key to the Tarot, meet
 
 ## API Usage
 
-1. [See full documentation + play with the API on SwaggerHub](https://app.swaggerhub.com/apis/ekswagger/rws-tarot_card_api/1.0.0)
+1. [See full documentation + play with the API on SwaggerHub](https://app.swaggerhub.com/apis/ekswagger/rws-tarot_card_api/1.2.0)
 
 2. See below for quick start
 
@@ -84,6 +84,13 @@ npm run dev
 ---
 
 ## 🗞 Updates
+
+### 2022/06/18
+
+- Updated Swagger docs
+- Added a `courts` endpoint (no specific rank parameter required)
+- Bumped `nodemon`
+- `require` typo fix
 
 ### 2021/01/25
 
