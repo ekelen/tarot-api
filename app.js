@@ -33,7 +33,7 @@ router.use((_req, res, next) => {
   return next();
 });
 
-router.use(function (_req, res, next) {
+router.use((_req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Credentials", true);
   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
@@ -87,7 +87,7 @@ router.get("/cards/search", (req, res) => {
     .status(200);
 });
 
-router.get("/cards/random", function (req, res) {
+router.get("/cards/random", (req, res) => {
   const { cards } = res.locals.rawData;
   const n = req.query.n > 0 && req.query.n < 79 ? req.query.n : 78;
   let cardPool = cloneDeep(cards);
@@ -138,19 +138,19 @@ router.get("/cards/courts/:court", (req, res, next) => {
     .status(200);
 });
 
-router.use(function (_req, _res, next) {
+router.use((_req, _res, next) => {
   var err = new Error("Not Found");
   err.status = 404;
   next(err);
 });
 
-router.use(function (err, _req, res) {
+router.use((err, _req, res) => {
   res.status(err.status || 500);
   res.json({ error: { status: err.status, message: err.message } });
 });
 
 const port = process.env.PORT || 8000;
 
-app.listen(port, function () {
+app.listen(port, () => {
   console.log("RWS API Server now running on port", port);
 });
