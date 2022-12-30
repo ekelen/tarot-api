@@ -20,11 +20,11 @@ app.get("/", (_req, res) => {
   return res.sendFile("static/index.html", { root });
 });
 
-app.get("/documentation.yaml", (_req, res) => {
-  return res.sendFile("static/RWS-card-api.yaml", { root });
-});
-
 app.use("/api/v1/", router);
+
+router.get("/docs", (_req, res) => {
+  return res.sendFile("static/ekswagger-tarot-api-1.3-resolved.json", { root });
+});
 
 router.use((_req, res, next) => {
   res.locals.rawData = JSON.parse(
