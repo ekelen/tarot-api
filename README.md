@@ -8,7 +8,7 @@ Provides information parsed from AE Waite's The Pictorial Key to the Tarot, meet
 
 ## API Usage
 
-1. [See full documentation + play with the API on SwaggerHub](https://app.swaggerhub.com/apis/ekswagger/rws-tarot_card_api/1.2.0)
+1. [See full documentation + play with the API on SwaggerHub](https://app.swaggerhub.com/apis/ekswagger/tarot-api/1.3)
 
 2. See below for quick start
 
@@ -17,10 +17,9 @@ Provides information parsed from AE Waite's The Pictorial Key to the Tarot, meet
 JS:
 
 ```javascript
-
 fetch("https://tarot-api.onrender.com/api/v1/cards/random?n=10")
   .then(function (response) {
-    return response.json()
+    return response.json();
   })
   .then(function (response) {
     // handle ten random cards
