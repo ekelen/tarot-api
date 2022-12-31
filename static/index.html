@@ -11,7 +11,7 @@
     <header>
       <h1>Tarot API</h1>
       <small
-        >by 🐙<a href="https://github.com/ekelen" target="_blank"
+        >by 🐙&nbsp;<a href="https://github.com/ekelen" target="_blank"
           >ekelen</a
         ></small
       >
@@ -48,12 +48,13 @@
     font-family: Calibri, Helvetica, sans-serif;
     margin-left: 0;
     margin-right: 0;
-    background-color: hsl(0, 0%, 98%);
-    color: hsl(0, 0%, 20%);
+    background-color: hsl(0, 0%, 20%);
+    color: hsl(0, 0%, 80%);
   }
 
   a {
     color: hsl(259, 100%, 64%);
+    transition: color 300ms linear;
   }
 
   a:visited {
@@ -62,18 +63,6 @@
 
   a:hover {
     color: hsl(30, 100%, 61%);
-    transition: color 300ms linear;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    body {
-      background-color: hsl(0, 0%, 20%);
-      color: hsl(0, 0%, 80%);
-    }
-
-    a:hover {
-      color: yellow;
-    }
   }
 
   h1,
