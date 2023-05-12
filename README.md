@@ -91,7 +91,7 @@ npm run dev
 
 ### 2023/12/30
 
-- **Important** Heroku stopped offering free dynos (👎), so you must replace all references to https://rws-cards-api.herokuapp.com to ~tarot-api.onrender.com~ https://tarot-api-3hv5.onrender.com (see May update) if you are using this API in your app.
+- **Important** Heroku stopped offering free dynos (👎), so you must replace all references to https://rws-cards-api.herokuapp.com to ~~tarot-api.onrender.com~~ https://tarot-api-3hv5.onrender.com (see May update) if you are using this API in your app.
 
 ### 2022/06/18
 
