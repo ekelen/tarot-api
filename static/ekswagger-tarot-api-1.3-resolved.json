@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://tarot-api.onrender.com/api/v1",
+      "url": "https://tarot-api-3hv5.onrender.com/api/v1",
       "description": "Production server"
     },
     {
