@@ -17,7 +17,7 @@ Provides information parsed from AE Waite's The Pictorial Key to the Tarot, meet
 JS:
 
 ```javascript
-fetch("https://tarot-api-3hv5.onrender.com/api/v1/cards/random?n=10")
+fetch("https://tarotapi.dev/api/v1/cards/random?n=10")
   .then(function (response) {
     return response.json();
   })
@@ -42,15 +42,15 @@ fetch("https://tarot-api-3hv5.onrender.com/api/v1/cards/random?n=10")
 
 Get all cards with word "peace" in meaning (reversed or upright):
 
-https://tarot-api-3hv5.onrender.com/api/v1/cards/search?meaning=peace (free dyno == super slow, sorry)
+https://tarotapi.dev/api/v1/cards/search?meaning=peace
 
 Get 10 random cards:
 
-https://tarot-api-3hv5.onrender.com/api/v1/cards/random?n=10
+https://tarotapi.dev/api/v1/cards/random?n=10
 
 Get the Knight of Wands:
 
-https://tarot-api-3hv5.onrender.com/api/v1/cards/wakn
+https://tarotapi.dev/api/v1/cards/wakn
 
 ---
 
@@ -84,6 +84,10 @@ npm run dev
 ---
 
 ## 🗞 Updates
+
+### 2023/12/19
+
+- 'Tis the season for a nice domain name and a more reliable server. You can now use https://tarotapi.dev (and https://tarotapi.dev/api/v1 etc). The old `onrender` URL should still work (faster).
 
 ### 2023/05/12
 
