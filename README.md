@@ -83,6 +83,9 @@ npm run dev
 
 ---
 
+## External resources
+If you are looking for images to complement your tarot app, the Rider Waite 1909 deck is public domain. You can find images of the cards here: https://www.sacred-texts.com/tarot/xr/index.htm
+
 ## 🗞 Updates
 
 ### 2023/12/19
