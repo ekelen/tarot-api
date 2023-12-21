@@ -10,76 +10,82 @@
   <body>
     <header>
       <h1>Tarot API</h1>
-      <small
-        >by 🐙&nbsp;<a href="https://github.com/ekelen" target="_blank"
-          >ekelen</a
-        ></small
-      >
     </header>
     <main>
-      <h3>
+      <p>
         REST API for card names, descriptions, and divinatory meanings according
         to AE Waite's Pictorial Key to the Tarot (1910), the companion to the
         Rider-Waite-Smith (RWS) deck upon which most newer decks are based.
-      </h3>
+      </p>
       <ul>
         <li>
-          ⭐️
+          →
           <a href="https://github.com/ekelen/tarot-api">See the README</a> at
           the repository root
         </li>
         <li>
-          ⭐️ See full documentation and try it out
+          → See full documentation and try it out
           <a href="https://app.swaggerhub.com/apis/ekswagger/tarot-api/1.3"
-            >on SwaggerHub!</a
+            >on SwaggerHub</a
           >
         </li>
         <li>
-          ⭐️ Go to
-          <a href="./api/v1/">the root endpoint!</a>
+          → Go to
+          <a href="./api/v1/">the root endpoint</a> or <a href="./api/v1/cards/random?n=1">request one random card</a>!
         </li>
       </ul>
     </main>
+    <footer>
+      <p
+        >Made with ✨ by <a href="https://github.com/ekelen" target="_blank"
+          >ekelen</a
+        ></p
+      >
+    </footer>
   </body>
 </html>
 
 <style>
-  body {
-    font-family: Calibri, Helvetica, sans-serif;
+ body {
+    font-family: monospace;
     margin-left: 0;
     margin-right: 0;
-    background-color: hsl(0, 0%, 20%);
+    background-color: hsl(228, 58%, 14%);
     color: hsl(0, 0%, 80%);
   }
-
-  a {
-    color: hsl(259, 100%, 64%);
-    transition: color 300ms linear;
-  }
-
-  a:visited {
-    color: hsl(259, 50%, 64%);
-  }
-
-  a:hover {
-    color: hsl(30, 100%, 61%);
-  }
-
-  h1,
-  h2,
-  h3 {
-    font-family: Calibri, Futura, serif;
-    font-weight: 300;
-  }
   header,
-  main {
+  main, 
+  footer {
     width: 960px;
     max-width: 95vw;
     margin: 2rem auto;
   }
+  footer {
+    margin-top: 4rem;
+    text-align: right;
+  }
   a {
     text-decoration: none;
     font-weight: bold;
+    color: hsl(259, 100%, 64%);
+    transition: color 300ms linear;
+  }
+  a:visited {
+    color: hsl(259, 50%, 64%);
+  }
+  a:hover {
+    color: hsl(30, 100%, 61%);
+  }
+  h1 {
+    font-size: 3rem;
+    font-weight: 300;
+    margin-bottom: 0;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: monospace;
+    color: hsl(0, 0%, 80%);
   }
   ul {
     list-style: none;
